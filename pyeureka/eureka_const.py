@@ -25,8 +25,10 @@ EUREKA_INSTANCE_DEFINITION = {
         ('healthCheckUrl', EUREKA_DEFAULT_SAME_AS, 'ipAddr')
     ],
     'transformations': [
-        ('port', lambda p: is_number(p), lambda p: {'$': int(p), '@enabled': 'true'}),
-        ('securePort', lambda p: is_number(p), lambda p: {'$': int(p), '@enabled': 'true'}),
+        ('port', lambda p: is_number(p), lambda p: {
+         '$': int(p), '@enabled': 'true'}),
+        ('securePort', lambda p: is_number(p),
+         lambda p: {'$': int(p), '@enabled': 'true'}),
     ]
 }
 
@@ -43,6 +45,7 @@ EUREKA_REQUESTS = {
     'GET': requests.get,
     'DELETE': requests.delete
 }
+
 
 def is_number(s):
     try:
