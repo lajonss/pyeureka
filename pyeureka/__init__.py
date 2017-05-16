@@ -1,1 +1,2 @@
 from eureka_client import EurekaClient
+from wrappers import SimpleEurekaClientWrapper, SimpleEurekaServiceWrapper
