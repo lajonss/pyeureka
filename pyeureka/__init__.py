@@ -1,0 +1,1 @@
+from eureka_client import EurekaClient
