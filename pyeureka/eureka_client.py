@@ -95,27 +95,3 @@ class EurekaClient:
         return request
 
 
-
-def test_eureka():
-    eureka_url = 'http://localhost:8765'
-    instance_definition = {
-        'ipAddr': '127.0.0.1',
-        'app': 'python-test-eureka',
-        'port': 80
-    }
-    client = EurekaClient(eureka_url, instance_definition, verbose=True)
-    client.register()
-    client.heartbeat()
-    client.deregister()
-    print(client.query())
-    print(client.query(app='python-test-eureka'))
-    try:
-        print(client.query(instance='127.0.0.1'))
-    except EurekaClientError as e:
-        print('error')
-        print(e)
-    #print(client.query(app='python-test-eureka', instance='localhost'))
-    
-
-test_eureka();
-
