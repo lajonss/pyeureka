@@ -8,22 +8,27 @@ instance = {
     'app': app
 }
 
-print("Eureka address: {}".format(eureka_url))
-print("Service definition")
+print("[II] Eureka address: {}".format(eureka_url))
+print("[II] Service definition")
 print(instance)
 service_wrapper = pyeureka.SimpleEurekaServiceWrapper(
     eureka_url, instance, heartbeat)
 
-print("Registering service")
+print("[II] Registering service")
 service_wrapper.run()
 
-print("Creating client")
+print("[II] Creating client")
 client_wrapper = pyeureka.SimpleEurekaClientWrapper(eureka_url)
 
-print("Fetching app data")
-print(client_wrapper.app(app))
+print("[II] Fetching app data")
+app_data = client_wrapper.app(app)
+print(app_data)
 
-print("Stopping service")
+print("[II] Interpreting app data")
+print("[II] Client should connect to: {}".format(
+    app_data['application']['instance'][0]['ipAddr']))
+
+print("[II] Stopping service")
 service_wrapper.stop()
 
-print("Done.")
+print("[II] Done.")
