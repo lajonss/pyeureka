@@ -1,3 +1,5 @@
+import threading
+
 import eureka_client as client
 
 
@@ -13,4 +15,16 @@ class SimpleEurekaClientWrapper:
 
 
 class SimpleEurekaServiceWrapper:
-    pass
+    def __init__(self, eureka_url, instance_definition, heartbeat_interval):
+        self.client = client.EurekaClient(eureka_url, instance_definition)
+        self.heartbeat_interval = heartbeat_interval
+
+    def run(self):
+        self.client.register()
+        self.timer = threading.Timer(
+            self.heartbeat_interval, self.client.heartbeat)
+        self.timer.start()
+
+    def stop(self):
+        self.timer.cancel()
+        self.client.deregister()
