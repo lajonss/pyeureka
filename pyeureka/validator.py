@@ -1,4 +1,4 @@
-import eureka_const as c
+import pyeureka.const as c
 
 
 class PyEurekaValidationError(Exception):

@@ -1,0 +1,3 @@
+import pyeureka
+
+print('elo')

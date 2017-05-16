@@ -1,2 +1,2 @@
-from eureka_client import EurekaClient
-from wrappers import SimpleEurekaClientWrapper, SimpleEurekaServiceWrapper
+from pyeureka.client import EurekaClient
+from pyeureka.wrappers import SimpleEurekaClientWrapper, SimpleEurekaServiceWrapper

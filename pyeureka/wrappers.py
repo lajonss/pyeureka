@@ -1,6 +1,6 @@
 import threading
 
-import eureka_client as client
+import pyeureka.client as client
 
 
 class SimpleEurekaClientWrapper:

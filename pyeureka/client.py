@@ -1,8 +1,8 @@
 import requests
 
 
-import eureka_validator as validator
-import eureka_const as c
+import pyeureka.validator as validator
+import pyeureka.const as c
 
 
 class EurekaClientError(Exception):
