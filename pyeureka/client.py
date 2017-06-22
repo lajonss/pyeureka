@@ -37,7 +37,7 @@ class EurekaClient:
             self.instance_definition = validator.validate_instance_definition(
                 instance_definition)
             self.app_id = self.instance_definition['instance']['app']
-            self.instance_id = self.instance_definition['instance']['hostName']
+            self.instance_id = self.instance_definition['instance']['instanceId']
         self.verbose = verbose
         if verbose:
             print("EurekaClient running with verbosity enabled")
