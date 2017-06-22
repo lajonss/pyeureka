@@ -1,11 +1,12 @@
 import pyeureka
 
 app = 'pyeureka-test'
-eureka_url = 'http://localhost:8765'
+eureka_url = 'http://localhost:8761'
 heartbeat = 5.0
 instance = {
     'ipAddr': '127.0.0.1',
-    'app': app
+    'app': app,
+    'instanceId': 'pozdrawiam'
 }
 
 print("[II] Eureka address: {}".format(eureka_url))
