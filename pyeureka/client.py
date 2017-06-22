@@ -1,8 +1,13 @@
-import requests
+import time
 
+import requests
 
 import pyeureka.validator as validator
 import pyeureka.const as c
+
+
+def get_timestamp():
+    return int(time.time())
 
 
 class EurekaClientError(Exception):
@@ -52,8 +57,10 @@ class EurekaClient:
         self._request('DELETE', comment='deregistration')
 
     def heartbeat(self):
-        self._request('PUT', comment='heartbeat', errors={
-                      404: EurekaInstanceDoesNotExistException})
+        request_uri = self._instance_uri() + '?status=UP&lastDirtyTimestamp=' + \
+            str(get_timestamp())
+        self._request('PUT', uri=request_uri, comment='heartbeat',
+                      errors={404: EurekaInstanceDoesNotExistException})
 
     def query(self, app=None, instance=None):
         request_uri = self.eureka_url + '/eureka/apps/'
