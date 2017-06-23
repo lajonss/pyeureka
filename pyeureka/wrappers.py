@@ -21,8 +21,12 @@ class SimpleEurekaServiceWrapper:
 
     def run(self):
         self.client.register()
-        self.timer = threading.Timer(
-            self.heartbeat_interval, self.client.heartbeat)
+        self.timer = threading.Timer(self.heartbeat_interval, self._interval)
+        self.timer.start()
+
+    def _interval(self):
+        self.client.heartbeat()
+        self.timer = threading.Timer(self.heartbeat_interval, self._interval)
         self.timer.start()
 
     def stop(self):
