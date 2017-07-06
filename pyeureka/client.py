@@ -19,6 +19,7 @@ class EurekaInstanceDoesNotExistException(Exception):
 
 
 class EurekaClient:
+
     def __init__(self, eureka_url, instance_definition=None, verbose=False):
         """
         eureka_url is the address to send requests to.
@@ -42,7 +43,8 @@ class EurekaClient:
             self.instance_definition = validator.validate_instance_definition(
                 instance_definition)
             self.app_id = self.instance_definition['instance']['app']
-            self.instance_id = self.instance_definition['instance']['instanceId']
+            self.instance_id = self.instance_definition[
+                'instance']['instanceId']
         self.verbose = verbose
         if verbose:
             print("EurekaClient running with verbosity enabled")
@@ -92,7 +94,7 @@ class EurekaClient:
         self._request('PUT', request_uri, 'up')
 
     def update_metadata(self, key, value):
-        request_uri = self._instance_uri, + \
+        request_uri = self._instance_uri() + \
             '/metadata?{}={}'.format(key, value)
         self._request('PUT', request_uri, 'update_metadata')
 
